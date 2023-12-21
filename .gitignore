@@ -1,0 +1,102 @@
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# compiled output
+dist
+tmp
+/out-tsc
+
+# dependencies
+node_modules
+
+# IDEs and editors
+/.idea
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# IDE - VSCode
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# misc
+/.sass-cache
+/connect.lock
+/coverage
+/libpeerconnection.log
+npm-debug.log
+yarn-error.log
+testem.log
+/typings
+
+# System Files
+.DS_Store
+Thumbs.db
+coverage
+
+coverage
+
+# sensitive
+*.env
+*.env.json
+*.env.local
+*.env.development
+*.bat
+*.ps1
+*.csv
+*.sh
+*.pem
+**/build/*
+*.snap
+*.exe
+*.key
+*auth.json
+cookies.json
+
+**/backup/**/*
+
+##############
+## MSOFFICE ##
+##############
+*.tmp
+
+# Word temporary
+~$*.doc*
+
+# Word Auto Backup File
+Backup of *.doc*
+
+# Excel temporary
+~$*.xls*
+
+# Excel Backup File
+*.xlk
+
+# PowerPoint temporary
+~$*.ppt*
+
+# Visio autosave temporary files
+*.~vsd*
+
+#bug binary
+*.ttf
+*.pdf
+*.xls
+*.xlsx
+*.docx
+*.mp4
+*.png
+
+#test
+
+**/cypress/videos
+**/cypress/screenshots
+
+**/__TEST__/*.json
+
+.nx/cache

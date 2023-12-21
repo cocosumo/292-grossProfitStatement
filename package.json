@@ -1,0 +1,35 @@
+{
+    "name": "app-292",
+    "version": "1.0.0",
+    "description": "",
+    "main": "src/app.js",
+    "scripts": {
+        "start": "node scripts/npm-start.js",
+        "upload:local": "kintone-customize-uploader --base-url https://rdmuhwtt6gx7.cybozu.com ./kintone.local.json",
+        "upload:prod": "kintone-customize-uploader --base-url https://rdmuhwtt6gx7.cybozu.com ./kintone.prod.json",
+        "develop": "npm run build -- --watch",
+        "build": "webpack",
+        "build:prod": "webpack --mode production"
+    },
+    "keywords": [
+        "Autoprefixer",
+        "PostCSS",
+        "Webpack",
+        "React",
+        "Babel"
+    ],
+    "author": "",
+    "license": "ISC",
+    "devDependencies": {
+        "@kintone/dts-gen": "^8.0.3",
+        "@types/dotenv-webpack": "^7.0.7",
+        "webpack": "^5.89.0",
+        "webpack-cli": "^5.1.4"
+    },
+    "dependencies": {
+        "@kintone/customize-uploader": "^8.0.5",
+        "@kintone/rest-api-client": "^5.0.5",
+        "dotenv-webpack": "^8.0.1",
+        "ts-loader": "^9.5.1"
+    }
+}

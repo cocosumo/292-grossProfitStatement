@@ -1,0 +1,14 @@
+{
+  "compilerOptions": {
+    "outDir": "./dist",
+    "allowJs": true,
+  },
+  "files": [
+    "./src/app.ts",
+    "./node_modules/@kintone/dts-gen/kintone.d.ts"
+  ],
+  "exclude": [
+    "./dist",
+    "webpack.config.js"
+  ]
+}

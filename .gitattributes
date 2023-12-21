@@ -1,0 +1,19 @@
+# テキストとして検出されたファイルの行末を自動的に処理する
+* text=auto
+
+# 以下のファイルタイプに unix eols を持たせることを強制し、Windows がそれらを壊さないようにする
+*.* text eol=lf
+
+#
+## これらのファイルはバイナリであり、そのままにしておく必要がある
+#
+*.gif binary
+*.png binary
+*.jpg binary
+*.png binary
+*.ttf binary
+*.svg binary
+*.pdf binary
+*.xls binary
+*.xlsx binary
+*.docx binary

@@ -1,0 +1,19 @@
+{
+    "app": "292",
+    "scope": "ALL",
+    "desktop": {
+        "js": [
+            "./dist/customize.js"
+        ],
+        "css": [
+
+        ]
+    },
+    "mobile": {
+        "js": [
+            "./dist/customize.js"
+        ],
+        "css": [
+        ]
+    }
+}
