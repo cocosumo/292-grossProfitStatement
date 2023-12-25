@@ -1,12 +1,9 @@
-import { useQuery } from '@tanstack/react-query';
-import { KStores } from 'types';
+import {type KStore, getAllStores} from '@api/getAllStores';
+import {useQuery} from '@tanstack/react-query';
 
-const meetingNumber: KStores = 'meetingNumber';
+const meetingNumber: KStore = 'meetingNumber';
 
-export const useStores = () => {
-  
-  return useQuery(
-    ['stores'],
-    () => getAllStores(`${meetingNumber} > 0 order by ${meetingNumber} desc`),
-  );
-};
+export const useStores = () => useQuery({
+	queryKey: ['stores'],
+	queryFn: async () => getAllStores(`${meetingNumber} > 0 order by ${meetingNumber} desc`),
+});

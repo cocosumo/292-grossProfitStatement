@@ -1,10 +1,7 @@
-import { useQuery } from '@tanstack/react-query';
-import { getProjTypes } from 'api-kintone';
+import {getProjTypes} from '@api/getProjTypes';
+import {useQuery} from '@tanstack/react-query';
 
-
-export const useProjTypes = () => {
-  return useQuery(
-    ['projTypes'],
-    () => getProjTypes(),
-  );
-};
+export const useProjTypes = () => useQuery({
+	queryKey: ['projTypes'],
+	queryFn: async () => getProjTypes(),
+});

@@ -1,12 +1,7 @@
-import { useQuery } from '@tanstack/react-query';
-import { getAllContracts } from 'api-kintone';
+import {getAllContracts} from '@api/getAllContracts';
+import {useQuery} from '@tanstack/react-query';
 
-
-
-export const useContracts = () => {
-  
-  return useQuery(
-    ['contractsByCocoas'],
-    () => getAllContracts(),
-  );
-};
+export const useContracts = () => useQuery({
+	queryKey: ['contractsByCocoas'],
+	queryFn: async () => getAllContracts(),
+});

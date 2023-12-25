@@ -1,9 +1,9 @@
-import { z } from 'zod';
+import {z} from 'zod';
 
 export const schema = z.object({
-  year: z.string(),
-  months: z.array(z.string()),
-  storeIds: z.array(z.string()).optional(),
+	year: z.string(),
+	months: z.array(z.string()),
+	storeIds: z.array(z.string()).optional(),
 });
 
 export type TForm = z.infer<typeof schema>;

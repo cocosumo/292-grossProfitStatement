@@ -1,25 +1,52 @@
 {
   "compilerOptions": {
-    "outDir": "./dist",
-    "allowJs": true,
-    "jsx": "react-jsx",
+    "baseUrl": "./src",
+    "outDir": "built", // where to put the compiled JS files
     "target": "ES2020", // which level of JS support to target
     "module": "CommonJS", // which system for the program AMD, UMD, System, CommonJS
+    "jsx": "react-jsx",
+    "sourceMap": false,
+    // Recommended: Compiler complains about expressions implicitly typed as 'any'
+    "noImplicitAny": true,
+    "strictNullChecks": true,
+    "paths": {
+      "@api/*": [
+        "./@api/*"
+      ],
+      "@components/*": [
+        "./@components/*"
+      ],
+      "@view/*": [
+        "./view/*"
+      ],
+      "@helpers/*": [
+        "./helpers/*"
+      ],
+      "@hooks/*": [
+        "./@hooks/*"
+      ],
+      "@cached/*": [
+        "./@hooks/cached/*"
+      ],
+      "@/*": [
+        "./*"
+      ],
+    },
+    "esModuleInterop": true
   },
   "files": [
-    "./src/app.ts",
     "./node_modules/@kintone/dts-gen/kintone.d.ts",
     "types/contracts.d.ts",
+    "types/employees.d.ts",
+    "types/procurements.d.ts",
     "types/projTypes.d.ts",
     "types/projects.d.ts",
     "types/stores.d.ts",
   ],
-  "exclude": [
-    "./dist",
-    "webpack.config.js",
-    "node_modules",
-  ],
   "include": [
     "src",
-  ]
+  ], // which files to compile
+  "exclude": [
+    "node_modules"
+  ], // which files to skip
 }

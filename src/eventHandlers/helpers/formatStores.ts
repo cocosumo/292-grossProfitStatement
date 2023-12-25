@@ -1,13 +1,13 @@
 
-
 export const formatStores = (
-  store: string,
-  stores: DBStores.SavedData[] | undefined,
+	store: string,
+	stores: Stores.SavedFields[] | undefined,
 ) => {
+	const targetStore = stores?.find(({uuid}) => uuid.value === store);
 
-  const targetStore = stores?.find(({ uuid }) => uuid.value === store);
+	if (!targetStore) {
+		return store;
+	}
 
-  if (!targetStore) return store;
-
-  return targetStore?.storeNameShort.value ?? '';
+	return targetStore?.storeNameShort.value ?? '';
 };

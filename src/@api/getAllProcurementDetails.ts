@@ -1,17 +1,15 @@
-import { appId, RecordType } from './config';
-import { getAllRecords } from '../common';
+import {client} from 'configKintone';
 
 export type GetAllProcurementDetailsParams = Parameters<typeof getAllProcurementDetails>[0];
 
-/**
- * Retrieves all 発注情報。
- * @param params - Optional parameters for retrieving the records.
- * @returns A promise that resolves to an array of procurement details.
- */
-export const getAllProcurementDetails = async (
-  params?: Omit<Parameters<typeof getAllRecords>[0], 'app'>,
-) => getAllRecords<RecordType>({
-  ...params,
-  app: appId,
-});
+export const appId = 253;
+export type IProcurements = Procurements.SavedFields;
+export type KProcurements = keyof IProcurements;
 
+export const getAllProcurementDetails = async (
+	params?: Omit<Parameters<typeof client.record.getAllRecords>[0], 'app'>,
+) => client.record.getAllRecords({
+	...params,
+	app: appId,
+	orderBy: '作成日時 desc',
+}).then(res => res as unknown as IProcurements[]);
