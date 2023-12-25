@@ -2,6 +2,7 @@
   "compilerOptions": {
     "outDir": "./dist",
     "allowJs": true,
+    "jsx": "react",
   },
   "files": [
     "./src/app.ts",
