@@ -11,6 +11,16 @@ import { getViewDataTotal } from '../helper/getViewDataTotal';
 import { KTableLabelList, projTypeList, tableLabelList } from '../../config';
 
 
+const StyledTableHead = styled(TableHead)({
+  backgroundColor: 'aliceblue',
+  fontSize: '14px',
+  border: '1px solid #ddd',
+  borderCollapse: 'collapse',
+  borderSpacing: '0',
+});
+
+
+
 /** 対象期間の粗利集計表を表示する */
 export const CumulativeTableTotal = ({
   contractData,
@@ -43,14 +53,6 @@ export const CumulativeTableTotal = ({
     contractData,
     area,
     monthsNum,
-  });
-
-  const StyledTableHead = styled(TableHead)({
-    backgroundColor: 'aliceblue',
-    fontSize: '14px',
-    border: '1px solid #ddd',
-    borderCollapse: 'collapse',
-    borderSpacing: '0',
   });
 
 

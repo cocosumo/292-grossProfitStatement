@@ -53,7 +53,7 @@ export const useCumulativeTableTotal = ({
       // エリアが選択されている場合
       switch (area[0] as AreaLabelList) {
         case '全店舗':
-          return contract;
+          return true;
         case '西エリア':
           return territory === '西';
         case '東エリア':
