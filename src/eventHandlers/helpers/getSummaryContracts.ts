@@ -1,4 +1,3 @@
-import { calcProfitability } from 'api-kintone/src/andpadProcurement/calculation/calcProfitability';
 import { IAndpadprocurements, IContracts, IProjects, IProjtypes, TAgents, TEnvelopeStatus } from 'types';
 import { roundDownTo1000 } from './roundDownTo1000';
 import { ProjTypeList } from '../formGrossProfitTable/config';

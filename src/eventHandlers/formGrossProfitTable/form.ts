@@ -1,5 +1,5 @@
-import { getFiscalYear } from '../../../../app-229-contracts/src/helpers/getFiscalYear';
-import { getLatestMonths } from '../../../../app-229-contracts/src/helpers/getLatestMonths';
+import { getFiscalYear } from '../helpers/getFiscalYear';
+import { getLatestMonths } from '../helpers/getLatestMonths';
 import { areaLabelList } from './config';
 import { TForm } from './schema';
 
