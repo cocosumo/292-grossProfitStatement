@@ -54,6 +54,8 @@ export const useCumulativeTableTotal = ({
 				return territory === '西';
 			case '東エリア':
 				return territory === '東';
+			default:
+				return true;
 		}
 	});
 
@@ -98,14 +100,14 @@ export const useCumulativeTableTotal = ({
 			const grossProfitCoco = formattingContracts[projType]?.grossProfitCoco ?? 0;
 
 			const calcOrderAmtBfTax = orderAmtBfTax === 0 ? 1 : orderAmtBfTax;
-			const grossProfitRateCoco = Big(grossProfitCoco).div(calcOrderAmtBfTax)
+			const grossProfitRateCoco = new Big(grossProfitCoco).div(calcOrderAmtBfTax)
 				.times(100)
 				.round(2, Big.roundHalfUp)
 				.toNumber();
-			const orderAmtMonthlyAve = Big(orderAmtBfTax).div(monthsNum)
+			const orderAmtMonthlyAve = new Big(orderAmtBfTax).div(monthsNum)
 				.round(0, Big.roundHalfUp)
 				.toNumber();
-			const grossProfitMonthlyAve = Big(grossProfitCoco).div(monthsNum)
+			const grossProfitMonthlyAve = new Big(grossProfitCoco).div(monthsNum)
 				.round(0, Big.roundHalfUp)
 				.toNumber();
 

@@ -1,8 +1,8 @@
 import {useQuery} from '@tanstack/react-query';
 import {getLastDayOfMonth} from './helper/getLastDayOfMonth';
-import {type KProcurement, getAllProcurementDetails} from '@api/getAllProcurementDetails';
+import {type KProcurements, getAllProcurementDetails} from '@api/getAllProcurementDetails';
 
-const paymentDate: KProcurement = '支払日';
+const paymentDate: KProcurements = '支払日';
 
 export const useAndpadProcurement = ({
 	until,
