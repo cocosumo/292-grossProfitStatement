@@ -32,7 +32,7 @@
         "@hookform/devtools": "^4.3.1",
         "@jest/globals": "^29.5.0",
         "@kintone/customize-uploader": "^7.0.2",
-        "@kintone/dts-gen": "^7.0.4",
+        "@kintone/dts-gen": "^7.0.5",
         "@nrwl/nx-cloud": "latest",
         "@tsconfig/node16": "^16.1.1",
         "@types/big.js": "^6.2.0",

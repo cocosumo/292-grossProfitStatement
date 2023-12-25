@@ -1,4 +1,5 @@
-
+import { isProd } from '../isProd';
+import { onIndexShowHandler } from './eventHandlers/onIndexShowHandler';
 
 
 const onIndexShow = [
