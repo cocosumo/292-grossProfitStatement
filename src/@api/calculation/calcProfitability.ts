@@ -102,14 +102,14 @@ export const calcProfitability = (params: {
 		.toNumber();
 
 	/** 利益税抜_夢てつ */
-	const yumeActualProfitHasRefund = !hasRefund ? 0 : new Big(yumeActualProfit).mul(0.95)
+	const yumeActualProfitHasRefund = hasRefund ? new Big(yumeActualProfit).mul(0.95)
 		.round(0, 1)
-		.toNumber();
+		.toNumber() : 0;
 
 	/** 利益税抜_ここすも */
-	const cocoActualProfitHasRefund = !hasRefund ? 0 : new Big(actualProfit).sub(yumeActualProfitHasRefund)
+	const cocoActualProfitHasRefund = hasRefund ? new Big(actualProfit).sub(yumeActualProfitHasRefund)
 		.round(0, 1)
-		.toNumber();
+		.toNumber() : 0;
 
 	/** 受注額計_税込 */
 	const orderTotalAfterAmount = new Big(orderAmountAfterTax).plus(additionalAmountAfterTax)

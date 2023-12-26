@@ -86,7 +86,7 @@ export const useCumulativeTableTotal = ({
 		}
 
 		return acc;
-	}, {});
+	}, {} as Record<ProjTypeList, GrossProfitTableRow>);
 
 	// 取得したデータから割合の計算をする
 	for (const projType of projTypeList) {

@@ -1,15 +1,14 @@
-import {
-	type IAndpadprocurements,
-	type IContracts,
-	type IProjects,
-	type IProjtypes,
-	type TAgents,
-	type TEnvelopeStatus,
-} from './types';
+
 import {roundDownTo1000} from './roundDownTo1000';
 import {type ProjTypeList} from '../formGrossProfitTable/config';
 import {Big} from 'big.js';
 import {calcProfitability} from '@api/calculation/calcProfitability';
+import {getAgents} from './getAgents';
+import {type IProjTypes} from '@api/getProjTypes';
+import {type IProjects} from '@api/getAllProjects';
+import {type IContracts} from '@api/getAllContracts';
+import {type IProcurements} from '@api/getAllProcurementDetails';
+import {type TEnvelopeStatus} from '@/configDocsign';
 
 export type SummaryContracts = {
 	/** 店舗名 */
@@ -58,33 +57,16 @@ export type SummaryContracts = {
 	inHouseProjType: string;
 };
 
-const getAgents = ({
-	agents,
-	relation,
-}: {
-	agents: IProjects['agents'];
-	relation: TAgents;
-}) => agents.value
-	.filter(({value}) => {
-		const {
-			agentType,
-			agentName,
-		} = value;
-
-		return (agentType.value === relation) && (agentName.value !== '');
-	})
-	.map(({value}) => value.agentName.value);
-
 export const getSummaryContracts = ({
 	projTypes,
 	projects,
 	contracts,
 	andpadProcurement,
 }: {
-	projTypes: IProjtypes[];
+	projTypes: IProjTypes[];
 	projects: IProjects[];
 	contracts: IContracts[];
-	andpadProcurement: IAndpadprocurements[];
+	andpadProcurement: IProcurements[];
 }) => {
 	const summaryContracts: SummaryContracts[] = projects.map(({
 		store,
@@ -107,7 +89,7 @@ export const getSummaryContracts = ({
 				projId: projIdContract,
 				envelopeStatus,
 			}) => (projIdContract.value === projId.value)
-        && (envelopeStatus.value as TEnvelopeStatus === 'completed'));
+				&& (envelopeStatus.value as TEnvelopeStatus === 'completed'));
 
 		const {
 			orderAmountAfterTax,
@@ -122,15 +104,16 @@ export const getSummaryContracts = ({
 			hasSubsidy,
 			subsidyAmt: subsidyAmtContract,
 		}) => {
-			const newOrderAmountAfterTax = new Big(acc.orderAmountAfterTax).plus(Number(totalContractAmt.value));
-			const newSubsidyAmt = hasSubsidy.value === 'はい'
-				? new Big(acc.subsidyAmt).plus(Number(subsidyAmtContract.value)) : acc.subsidyAmt;
+			const newOrderAmtAfTax = new Big(acc.orderAmountAfterTax).plus(Number(totalContractAmt.value))
+				.toNumber();
+			const newSubsidyAmt = new Big(acc.subsidyAmt).plus(Number(subsidyAmtContract.value))
+				.toNumber();
 
 			return {
-				orderAmountAfterTax: newOrderAmountAfterTax,
+				orderAmountAfterTax: newOrderAmtAfTax,
 				hasRefund: acc.hasRefund || hasRefundContracts.value === 'はい',
 				tax: contractType.value === '契約' ? Number(taxContract.value) : acc.tax,
-				subsidyAmt: newSubsidyAmt,
+				subsidyAmt: hasSubsidy.value === 'はい' ? newSubsidyAmt : acc.subsidyAmt,
 			};
 		}, {
 			orderAmountAfterTax: 0,
@@ -163,7 +146,7 @@ export const getSummaryContracts = ({
 			paymentAmount: procurementBeforeTax, // 正しくは支払金額だが、粗利表表示が目的のため、発注金額を設定する
 			depositAmount: orderAmountAfterTax, // 正しくは入金金額だが、粗利表表示が目的のため、契約金額を設定する
 			yumeCommFeeRate: (yumeAgNames.length === 1 && yumeAgNames[0] === 'ここすも') ? 0 : Number(commissionRate.value),
-			tax: tax.value,
+			tax,
 			hasRefund,
 			subsidyAmt,
 		});

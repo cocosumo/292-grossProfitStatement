@@ -57,10 +57,10 @@ module.exports = {
 						"format": ["camelCase", "PascalCase", "UPPER_CASE"],
 						"leadingUnderscore": "allow"
 					},
-	
+
 				],
 				"no-irregular-whitespace": "off",
-				
+				"@typescript-eslint/prefer-reduce-type-parameter": "off"
 			},
 		},
 	],

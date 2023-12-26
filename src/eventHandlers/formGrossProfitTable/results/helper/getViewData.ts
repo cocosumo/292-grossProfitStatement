@@ -10,7 +10,7 @@ export const getViewData = ({
 	tgtParam: KTableLabelList;
 }) => {
 	const tgtObj = datas.find(({projType}) => projType === projTypeForTotalization);
-	const tgtData = !tgtObj ? 0 : tgtObj[tgtParam];
+	const tgtData = tgtObj ? tgtObj[tgtParam] : 0;
 
 	switch (tgtParam) {
 		case 'grossProfitCoco':
