@@ -1,4 +1,3 @@
-import {isProd} from '../isProd';
 import {onIndexShowHandler} from './eventHandlers/onIndexShowHandler';
 
 const onIndexShow = [
@@ -6,7 +5,7 @@ const onIndexShow = [
 	'mobile.app.record.index.show',
 ];
 
-(async () => {
-	console.log(`Running in ${isProd ? 'production' : 'development'}`);
+(() => {
+	console.log(`Running in ${process.env.NODE_ENV}`);
 	kintone.events.on(onIndexShow, onIndexShowHandler);
 })();

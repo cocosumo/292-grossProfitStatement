@@ -1,5 +1,5 @@
 declare namespace Procurements {
-  interface Data {
+  interface Fields {
     orderType: kintone.fieldTypes.SingleLineText;
     note: kintone.fieldTypes.SingleLineText;
     supplierId: kintone.fieldTypes.SingleLineText;
@@ -36,7 +36,7 @@ declare namespace Procurements {
     orderDate: kintone.fieldTypes.Date;
     andpadManagementProjId: kintone.fieldTypes.SingleLineText;
   }
-  interface SavedFields extends Data {
+  interface SavedFields extends Fields {
     $id: kintone.fieldTypes.Id;
     $revision: kintone.fieldTypes.Revision;
     更新者: kintone.fieldTypes.Modifier;
