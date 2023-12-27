@@ -8,8 +8,8 @@ import {useProjTypes} from '../../hooks/useProjTypes';
 import {getDatePeriod} from './helper/getDatePeriod';
 import {type SummaryContracts, getSummaryContracts} from '../../helpers/getSummaryContracts';
 import {Stack} from '@mui/material';
-import {CumulativeTableTotal} from './cumulativeTableByArea/CumulativeTableTotal';
-import {CumulativeTableAverage} from './cumulativeTableByArea/CumulativeTableAverage';
+import {CumulativeTableTotal} from './cumulativeTableTotal/CumulativeTableTotal';
+import {CumulativeTableAverage} from './cumulativeTableAverage/CumulativeTableAverage';
 
 export const Results = () => {
 	const [
@@ -57,7 +57,7 @@ export const Results = () => {
 	return (
 		<Stack spacing={2}>
 			<CumulativeTableTotal contractData={summaryContracts} />
-			<CumulativeTableAverage />
+			<CumulativeTableAverage contractData={summaryContracts} />
 			<GrossProfitByPerson contractData={summaryContracts} />
 		</Stack>
 	);
