@@ -2,11 +2,6 @@
 
 契約一覧データを集計して、粗利表を表示します
 
-## 使用技術一覧
-
-![node.js](<img src="https://img.shields.io/badge/-Node.js-339933.svg?logo=node.js&style=plastic">)
-![typescript](<img src="https://img.shields.io/badge/-Typescript-007ACC.svg?logo=typescript&style=plastic">)
-
 ## 開発手順
 
 1. ローカル開発環境設定をkintoneへアップロードする
