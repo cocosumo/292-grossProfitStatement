@@ -14,11 +14,16 @@ export type KEmployees = keyof IEmployees;
 export const getEmployees = async (
 	isActiveOnly = true,
 	statuses: EmpStatus[] = ['有効'],
+	isSalesPosOnly = true,
 ) => {
 	const queryArray: string[] = [];
 
 	if (isActiveOnly) {
 		queryArray.push(`状態 in ( ${statuses.map(s => `"${s}"`).join(',')})`);
+	}
+
+	if (isSalesPosOnly) {
+		queryArray.push('職種 in( "営業","営業・工務")');
 	}
 
 	return client.record.getAllRecords({
