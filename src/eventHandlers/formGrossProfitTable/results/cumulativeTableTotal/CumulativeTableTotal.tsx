@@ -1,8 +1,7 @@
 import {Stack, Table, TableBody, TableHead, Typography} from '@mui/material';
 import {styled} from '@mui/material/styles';
-import {TableRowLayout} from './TableRowLayout';
+import {TableRowLayout} from '../TableRowLayout';
 import {type SummaryContracts} from '../../../helpers/getSummaryContracts';
-import {useTypedWatch} from '../../../hooks/useTypedRHF';
 import {useAreaNameById} from '../hooks/useAreaNameById';
 import {useCumulativeTableTotal} from '../hooks/useCumulativeTableTotal';
 import {getMonthsNum} from '../helper/getMonthsNum';
@@ -21,25 +20,15 @@ const StyledTableHead = styled(TableHead)({
 /** 対象期間の粗利集計表を表示する */
 export const CumulativeTableTotal = ({
 	contractData,
+	area,
+	periods,
+	year,
 }: {
 	contractData: SummaryContracts[];
+	area: string[];
+	periods: string[];
+	year: string;
 }) => {
-	const [
-		year,
-		periods,
-		area,
-	] = useTypedWatch({
-		name: [
-			'year',
-			'months',
-			'storeIds',
-		],
-	}) as [
-		string,
-		string[],
-		string[],
-	];
-
 	const storeNames = useAreaNameById(area);
 
 	const monthsNum = getMonthsNum(periods);

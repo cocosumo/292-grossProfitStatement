@@ -10,22 +10,26 @@ import {type SummaryContracts, getSummaryContracts} from '../../helpers/getSumma
 import {Stack} from '@mui/material';
 import {CumulativeTableTotal} from './cumulativeTableTotal/CumulativeTableTotal';
 import {CumulativeTableAverage} from './cumulativeTableAverage/CumulativeTableAverage';
+import {useEmployees} from '@/eventHandlers/hooks/useEmployees';
+import {type IEmployees} from '@api/getEmployees';
 
 export const Results = () => {
 	const [
-		selectMonths,
+		periods,
 		year,
+		area,
 	] = useTypedWatch({
 		name: [
 			'months',
 			'year',
+			'storeIds',
 		],
-	}) as [string[], string];
+	}) as [string[], string, string[]];
 
 	const {
 		finDate,
 		startDate,
-	} = getDatePeriod(selectMonths, year);
+	} = getDatePeriod(periods, year);
 
 	const {data: projects} = useProjects({
 		from: startDate,
@@ -35,13 +39,14 @@ export const Results = () => {
 	const {data: contracts} = useContracts();
 	const {data: andpadProcurement} = useAndpadProcurement({until: finDate});
 	const {data: projTypes} = useProjTypes();
+	const {data: employees} = useEmployees();
 
 	const summaryContracts = useMemo(() => {
 		if (
 			!projects
-      || !contracts
-      || !andpadProcurement
-      || !projTypes
+			|| !contracts
+			|| !andpadProcurement
+			|| !projTypes
 		) {
 			return [] as SummaryContracts[];
 		}
@@ -56,8 +61,19 @@ export const Results = () => {
 
 	return (
 		<Stack spacing={2}>
-			<CumulativeTableTotal contractData={summaryContracts} />
-			<CumulativeTableAverage contractData={summaryContracts} />
+			<CumulativeTableTotal
+				contractData={summaryContracts}
+				area={area}
+				periods={periods}
+				year={year}
+			/>
+			<CumulativeTableAverage
+				contractData={summaryContracts}
+				area={area}
+				periods={periods}
+				year={year}
+				employees={employees || [] as unknown as IEmployees[]}
+			/>
 			<GrossProfitByPerson contractData={summaryContracts} />
 		</Stack>
 	);

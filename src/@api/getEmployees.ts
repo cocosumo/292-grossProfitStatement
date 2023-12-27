@@ -2,8 +2,8 @@ import {client} from 'configKintone';
 import {type EmpStatus} from 'helpers/rolesMap';
 
 export const appId = 34;
-export type RecordType = Employees.SavedFields;
-export type RecordKey = keyof RecordType;
+export type IEmployees = Employees.SavedFields;
+export type KEmployees = keyof IEmployees;
 
 /**
  * 社員名簿を取得する
@@ -25,5 +25,5 @@ export const getEmployees = async (
 		app: appId,
 		condition: queryArray.join(' and ') || undefined,
 		orderBy: 'sort asc',
-	}).then(res => res as unknown as RecordType[]);
+	}).then(res => res as unknown as IEmployees[]);
 };
