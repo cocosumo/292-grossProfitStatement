@@ -12,6 +12,9 @@ import {CumulativeTableTotal} from './cumulativeTableTotal/CumulativeTableTotal'
 import {CumulativeTableAverage} from './cumulativeTableAverage/CumulativeTableAverage';
 import {useEmployees} from '@/eventHandlers/hooks/useEmployees';
 import {type IEmployees} from '@api/getEmployees';
+import {useAreaNameById} from './hooks/useAreaNameById';
+import {getMonthsNum} from './helper/getMonthsNum';
+import {useCumulativeTableTotal} from './hooks/useCumulativeTableTotal';
 
 export const Results = () => {
 	const [
@@ -59,13 +62,21 @@ export const Results = () => {
 		});
 	}, [projects, contracts, andpadProcurement, projTypes]);
 
+	// CumulativeTable用の演算処理
+	const storeNames = useAreaNameById(area);
+	const monthsNum = getMonthsNum(periods);
+	const cumulativeTableLabel = `${year}年度 ${storeNames ? storeNames : ''}	契約集計表`;
+	const cumulativeTableDatas = useCumulativeTableTotal({
+		contractData: summaryContracts,
+		area,
+		monthsNum,
+	});
+
 	return (
 		<Stack spacing={2}>
 			<CumulativeTableTotal
-				contractData={summaryContracts}
-				area={area}
-				periods={periods}
-				year={year}
+				cumulativeTableDatas={cumulativeTableDatas}
+				cumulativeTableLabel={cumulativeTableLabel}
 			/>
 			<CumulativeTableAverage
 				contractData={summaryContracts}
