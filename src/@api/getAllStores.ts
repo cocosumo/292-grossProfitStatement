@@ -1,4 +1,4 @@
-import {client} from 'configKintone';
+import {client} from '@/configKintone';
 
 export const appId = 19;
 export type IStore = Stores.SavedFields;

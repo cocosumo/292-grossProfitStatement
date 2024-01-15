@@ -1,4 +1,4 @@
-import {client} from 'configKintone';
+import {client} from '@/configKintone';
 import {type EmpStatus} from 'helpers/rolesMap';
 
 export const appId = 34;

@@ -1,4 +1,4 @@
-import {client} from 'configKintone';
+import {client} from '@/configKintone';
 
 export const appId = 190;
 export type IProjTypes = ProjTypes.SavedFields;

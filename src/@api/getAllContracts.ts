@@ -1,4 +1,4 @@
-import {client} from 'configKintone';
+import {client} from '@/configKintone';
 
 export const appId = 232;
 export type IContracts = Contracts.SavedFields;
