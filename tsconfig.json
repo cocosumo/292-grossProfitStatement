@@ -13,21 +13,6 @@
       "@api/*": [
         "./@api/*"
       ],
-      "@components/*": [
-        "./@components/*"
-      ],
-      "@view/*": [
-        "./view/*"
-      ],
-      "@helpers/*": [
-        "./helpers/*"
-      ],
-      "@hooks/*": [
-        "./@hooks/*"
-      ],
-      "@cached/*": [
-        "./@hooks/cached/*"
-      ],
       "@/*": [
         "./*"
       ],
