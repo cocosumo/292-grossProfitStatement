@@ -1,2 +1,4 @@
 *.d.ts
 dist
+*.json
+**/__TEST__/**
