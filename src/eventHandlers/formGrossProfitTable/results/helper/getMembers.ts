@@ -10,7 +10,7 @@ export const getMembers = ({
 }) => {
 	const tgtMembers = employees.filter(({
 		territory_v2,
-		mainStore,
+		mainStoreId_v2,
 	}) => {
 		if (areaLabelList.some(areaLabel => areaLabel === area[0])) {
 			switch (area[0] as AreaLabelList) {
@@ -25,7 +25,7 @@ export const getMembers = ({
 			}
 		} else {
 			// 店舗が選択されている場合
-			return area.includes(mainStore.value);
+			return area.includes(mainStoreId_v2.value);
 		}
 	});
 
