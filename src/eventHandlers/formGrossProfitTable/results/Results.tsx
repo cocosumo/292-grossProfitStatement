@@ -8,9 +8,8 @@ import {useProjTypes} from '../../hooks/useProjTypes';
 import {getDatePeriod} from './helper/getDatePeriod';
 import {type SummaryContracts, getSummaryContracts} from '../../helpers/getSummaryContracts';
 import {Stack} from '@mui/material';
-import {useEmployees} from '@/eventHandlers/hooks/useEmployees';
 import {CumulativeTable} from './cumulativeTable/CumulativeTable';
-import {getMembers} from './helper/getMembers';
+import {useMembers} from '@/eventHandlers/hooks/useMembers';
 import {type IEmployees} from '@api/getEmployees';
 
 export const Results = () => {
@@ -39,7 +38,7 @@ export const Results = () => {
 	const {data: contracts} = useContracts();
 	const {data: andpadProcurement} = useAndpadProcurement({until: finDate});
 	const {data: projTypes} = useProjTypes();
-	const {data: employees} = useEmployees();
+	const {data: members} = useMembers({area});
 
 	const summaryContracts = useMemo(() => {
 		if (
@@ -59,17 +58,6 @@ export const Results = () => {
 		});
 	}, [projects, contracts, andpadProcurement, projTypes]);
 
-	const members = useMemo(() => {
-		if (!employees) {
-			return [] as IEmployees[];
-		}
-
-		return getMembers({
-			employees,
-			area,
-		});
-	}, [employees, area]);
-
 	return (
 		<Stack spacing={2}>
 			<CumulativeTable
@@ -77,9 +65,15 @@ export const Results = () => {
 				periods={periods}
 				year={year}
 				summaryContracts={summaryContracts}
-				employeesNum={members.length}
+				employeesNum={members ? members.length : 0}
 			/>
-			<GrossProfitByPerson contractData={summaryContracts} />
+			<GrossProfitByPerson
+				area={area}
+				members={members || [] as IEmployees[]}
+				periods={periods}
+				year={year}
+				summaryContracts={summaryContracts}
+			/>
 		</Stack>
 	);
 };
