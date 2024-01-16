@@ -10,6 +10,8 @@ import {type SummaryContracts, getSummaryContracts} from '../../helpers/getSumma
 import {Stack} from '@mui/material';
 import {useEmployees} from '@/eventHandlers/hooks/useEmployees';
 import {CumulativeTable} from './cumulativeTable/CumulativeTable';
+import {getMembers} from './helper/getMembers';
+import {type IEmployees} from '@api/getEmployees';
 
 export const Results = () => {
 	const [
@@ -57,6 +59,17 @@ export const Results = () => {
 		});
 	}, [projects, contracts, andpadProcurement, projTypes]);
 
+	const members = useMemo(() => {
+		if (!employees) {
+			return [] as IEmployees[];
+		}
+
+		return getMembers({
+			employees,
+			area,
+		});
+	}, [employees, area]);
+
 	return (
 		<Stack spacing={2}>
 			<CumulativeTable
@@ -64,7 +77,7 @@ export const Results = () => {
 				periods={periods}
 				year={year}
 				summaryContracts={summaryContracts}
-				employees={employees}
+				employeesNum={members.length}
 			/>
 			<GrossProfitByPerson contractData={summaryContracts} />
 		</Stack>
