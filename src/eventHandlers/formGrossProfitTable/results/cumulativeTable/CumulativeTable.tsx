@@ -1,8 +1,5 @@
-import {useMemo} from 'react';
-import {getMembers} from '../helper/getMembers';
 import {CumulativeTableAverage} from './CumulativeTableAverage';
 import {CumulativeTableTotal} from './CumulativeTableTotal';
-import {type IEmployees} from '@api/getEmployees';
 import {useAreaNameById} from '../hooks/useAreaNameById';
 import {getMonthsNum} from '../helper/getMonthsNum';
 import {useCumulativeTableTotal} from '../hooks/useCumulativeTableTotal';
@@ -14,13 +11,13 @@ export const CumulativeTable = ({
 	periods,
 	year,
 	summaryContracts,
-	employees,
+	employeesNum,
 }: {
 	area: string[];
 	periods: string[];
 	year: string;
 	summaryContracts: SummaryContracts[];
-	employees: IEmployees[] | undefined;
+	employeesNum: number;
 }) => {
 	const storeNames = useAreaNameById(area);
 	const monthsNum = getMonthsNum(periods);
@@ -31,17 +28,6 @@ export const CumulativeTable = ({
 		monthsNum,
 	});
 
-	const members = useMemo(() => {
-		if (!employees) {
-			return [] as IEmployees[];
-		}
-
-		return getMembers({
-			employees,
-			area,
-		});
-	}, [employees, area]);
-
 	return (
 		<Stack spacing={2}>
 			<Stack direction={'row'} justifyContent={'space-between'}>
@@ -50,7 +36,7 @@ export const CumulativeTable = ({
 				</Typography>
 				<TextField
 					variant='standard'
-					value={members.length}
+					value={employeesNum}
 					size='small'
 					InputProps={{
 						startAdornment: <InputAdornment position='start'>対象人数</InputAdornment>,
@@ -70,7 +56,7 @@ export const CumulativeTable = ({
 			/>
 			<CumulativeTableAverage
 				cumulativeTableDatas={cumulativeTableDatas}
-				memberNum={members.length}
+				memberNum={employeesNum}
 			/>
 		</Stack>
 	);
