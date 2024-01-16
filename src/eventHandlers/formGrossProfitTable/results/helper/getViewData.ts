@@ -12,7 +12,7 @@ export const getViewData = ({
 	tgtParam: KTableLabelList;
 	memberNum?: number;
 }) => {
-	const memberNumForCalc = memberNum === 0 ? 1 : memberNum;
+	const memberNumForCalc = memberNum || 1;
 	const tgtObj = datas.find(({projType}) => projType === projTypeForTotalization);
 	const tgtData = tgtObj ? tgtObj[tgtParam] : 0;
 	const tgtDataAve = new Big(tgtData).div(memberNumForCalc).toNumber();
