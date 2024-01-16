@@ -1,7 +1,7 @@
 import {projTypeList, type GrossProfitTableRow, tableLabelList, type KTableLabelList, tableLabelListAve} from '../../config';
 import {styled} from '@mui/material/styles';
 import {Table, TableBody, TableHead} from '@mui/material';
-import {TableRowLayout} from '../TableRowLayout';
+import {TableRowLayout} from './TableRowLayout';
 import {getViewData} from '../helper/getViewData';
 import {getViewDataTotal} from '../helper/getViewDataTotal';
 
