@@ -15,6 +15,7 @@ export const getEmployees = async (
 	isActiveOnly = true,
 	statuses: EmpStatus[] = ['有効'],
 	isSalesPosOnly = true,
+	isCocoOnly = true,
 ) => {
 	const queryArray: string[] = [];
 
@@ -23,7 +24,11 @@ export const getEmployees = async (
 	}
 
 	if (isSalesPosOnly) {
-		queryArray.push('職種 in( "営業","営業・工務")');
+		queryArray.push('職種 in ( "営業","営業・工務", "工務")');
+	}
+
+	if (isCocoOnly) {
+		queryArray.push('affiliation in ("ここすも")');
 	}
 
 	return client.record.getAllRecords({
