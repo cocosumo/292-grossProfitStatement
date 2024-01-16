@@ -8,13 +8,8 @@ import {useProjTypes} from '../../hooks/useProjTypes';
 import {getDatePeriod} from './helper/getDatePeriod';
 import {type SummaryContracts, getSummaryContracts} from '../../helpers/getSummaryContracts';
 import {Stack} from '@mui/material';
-import {CumulativeTableTotal} from './cumulativeTableTotal/CumulativeTableTotal';
-import {CumulativeTableAverage} from './cumulativeTableAverage/CumulativeTableAverage';
 import {useEmployees} from '@/eventHandlers/hooks/useEmployees';
-import {type IEmployees} from '@api/getEmployees';
-import {useAreaNameById} from './hooks/useAreaNameById';
-import {getMonthsNum} from './helper/getMonthsNum';
-import {useCumulativeTableTotal} from './hooks/useCumulativeTableTotal';
+import {CumulativeTable} from './cumulativeTable/CumulativeTable';
 
 export const Results = () => {
 	const [
@@ -62,28 +57,14 @@ export const Results = () => {
 		});
 	}, [projects, contracts, andpadProcurement, projTypes]);
 
-	// CumulativeTable用の演算処理
-	const storeNames = useAreaNameById(area);
-	const monthsNum = getMonthsNum(periods);
-	const cumulativeTableLabel = `${year}年度 ${storeNames ? storeNames : ''}	契約集計表`;
-	const cumulativeTableDatas = useCumulativeTableTotal({
-		contractData: summaryContracts,
-		area,
-		monthsNum,
-	});
-
 	return (
 		<Stack spacing={2}>
-			<CumulativeTableTotal
-				cumulativeTableDatas={cumulativeTableDatas}
-				cumulativeTableLabel={cumulativeTableLabel}
-			/>
-			<CumulativeTableAverage
-				contractData={summaryContracts}
+			<CumulativeTable
 				area={area}
 				periods={periods}
 				year={year}
-				employees={employees || [] as unknown as IEmployees[]}
+				summaryContracts={summaryContracts}
+				employees={employees}
 			/>
 			<GrossProfitByPerson contractData={summaryContracts} />
 		</Stack>
