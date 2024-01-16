@@ -1,16 +1,21 @@
+import Big from 'big.js';
 import {type GrossProfitTableRow, type KTableLabelList, type ProjTypeList} from '../../config';
 
 export const getViewData = ({
 	datas,
 	projTypeForTotalization,
 	tgtParam,
+	memberNum = 1,
 }: {
 	datas: GrossProfitTableRow[];
 	projTypeForTotalization: ProjTypeList;
 	tgtParam: KTableLabelList;
+	memberNum?: number;
 }) => {
+	const memberNumForCalc = memberNum === 0 ? 1 : memberNum;
 	const tgtObj = datas.find(({projType}) => projType === projTypeForTotalization);
 	const tgtData = tgtObj ? tgtObj[tgtParam] : 0;
+	const tgtDataAve = new Big(tgtData).div(memberNumForCalc).toNumber();
 
 	switch (tgtParam) {
 		case 'grossProfitCoco':
@@ -18,11 +23,13 @@ export const getViewData = ({
 		case 'orderAmtMonthlyAve':
 		case 'orderAmtTotalBeforeTax':
 			// 金額表示
-			return tgtData === 0 ? '-' : `￥ ${tgtData.toLocaleString()}`;
+			return tgtDataAve === 0 ? '-'
+				: `￥ ${new Big(tgtDataAve).round(0, Big.roundHalfUp).toNumber().toLocaleString()}`;
 
 		case 'grossProfitRateCoco':
 			// 割合(%)表示
-			return tgtData === 0 ? '-' : `${tgtData} %`;
+			return tgtDataAve === 0 ? '-'
+				: `${new Big(tgtDataAve).round(2, Big.roundHalfUp).toNumber()} %`;
 
 		default:
 			return '-';

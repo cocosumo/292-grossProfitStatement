@@ -50,6 +50,14 @@ export const tableLabelList: Record<KTableLabelList, string> = {
 	orderAmtTotalBeforeTax: '受注金額計',
 	grossProfitCoco: 'ここすも粗利',
 	grossProfitRateCoco: 'ここすも粗利率',
-	orderAmtMonthlyAve: '受注_月平均',
-	grossProfitMonthlyAve: '粗利_月平均',
+	orderAmtMonthlyAve: '受注 月平均',
+	grossProfitMonthlyAve: '粗利 月平均',
+};
+
+export const tableLabelListAve: Record<KTableLabelList, string> = {
+	orderAmtTotalBeforeTax: '一人当たり受注額',
+	grossProfitCoco: '一人当たり粗利額',
+	grossProfitRateCoco: '一人当たり粗利率',
+	orderAmtMonthlyAve: '受注 月平均',
+	grossProfitMonthlyAve: '粗利 月平均',
 };
