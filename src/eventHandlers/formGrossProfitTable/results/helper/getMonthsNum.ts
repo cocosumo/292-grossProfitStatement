@@ -2,7 +2,7 @@ import {type PeriodLabelList, periodLabelList} from '../../config';
 
 export const getMonthsNum = (periods: string[]) => {
 	if (!periodLabelList.includes(periods[0] as PeriodLabelList)) {
-		return periods.length ?? 1;
+		return periods.length || 1;
 	}
 
 	// 期間が選択されている場合
