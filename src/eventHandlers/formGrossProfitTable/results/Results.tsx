@@ -8,24 +8,28 @@ import {useProjTypes} from '../../hooks/useProjTypes';
 import {getDatePeriod} from './helper/getDatePeriod';
 import {type SummaryContracts, getSummaryContracts} from '../../helpers/getSummaryContracts';
 import {Stack} from '@mui/material';
-import {CumulativeTableTotal} from './cumulativeTableByArea/CumulativeTableTotal';
-import {CumulativeTableAverage} from './cumulativeTableByArea/CumulativeTableAverage';
+import {useEmployees} from '@/eventHandlers/hooks/useEmployees';
+import {CumulativeTable} from './cumulativeTable/CumulativeTable';
+import {getMembers} from './helper/getMembers';
+import {type IEmployees} from '@api/getEmployees';
 
 export const Results = () => {
 	const [
-		selectMonths,
+		periods,
 		year,
+		area,
 	] = useTypedWatch({
 		name: [
 			'months',
 			'year',
+			'storeIds',
 		],
-	}) as [string[], string];
+	}) as [string[], string, string[]];
 
 	const {
 		finDate,
 		startDate,
-	} = getDatePeriod(selectMonths, year);
+	} = getDatePeriod(periods, year);
 
 	const {data: projects} = useProjects({
 		from: startDate,
@@ -35,13 +39,14 @@ export const Results = () => {
 	const {data: contracts} = useContracts();
 	const {data: andpadProcurement} = useAndpadProcurement({until: finDate});
 	const {data: projTypes} = useProjTypes();
+	const {data: employees} = useEmployees();
 
 	const summaryContracts = useMemo(() => {
 		if (
 			!projects
-      || !contracts
-      || !andpadProcurement
-      || !projTypes
+			|| !contracts
+			|| !andpadProcurement
+			|| !projTypes
 		) {
 			return [] as SummaryContracts[];
 		}
@@ -54,10 +59,26 @@ export const Results = () => {
 		});
 	}, [projects, contracts, andpadProcurement, projTypes]);
 
+	const members = useMemo(() => {
+		if (!employees) {
+			return [] as IEmployees[];
+		}
+
+		return getMembers({
+			employees,
+			area,
+		});
+	}, [employees, area]);
+
 	return (
 		<Stack spacing={2}>
-			<CumulativeTableTotal contractData={summaryContracts} />
-			<CumulativeTableAverage />
+			<CumulativeTable
+				area={area}
+				periods={periods}
+				year={year}
+				summaryContracts={summaryContracts}
+				employeesNum={members.length}
+			/>
 			<GrossProfitByPerson contractData={summaryContracts} />
 		</Stack>
 	);

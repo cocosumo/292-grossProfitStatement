@@ -1,18 +1,14 @@
 import {Big} from 'big.js';
 import {type SummaryContracts} from '../../../helpers/getSummaryContracts';
 import {useStores} from '../../../hooks/useStores';
-import {type AreaLabelList, type GrossProfitTableRow, type ProjTypeList, areaLabelList, projTypeList} from '../../config';
-
-const grossProfitTblRowInit: GrossProfitTableRow = {
-	projType: '',
-	orderAmtTotalBeforeTax: 0,
-	grossprofitAmtTotal: 0,
-	introFeeYume: 0,
-	grossProfitCoco: 0,
-	grossProfitRateCoco: 0,
-	orderAmtMonthlyAve: 0,
-	grossProfitMonthlyAve: 0,
-};
+import {
+	type AreaLabelList,
+	type GrossProfitTableRow,
+	type ProjTypeList,
+	areaLabelList,
+	projTypeList,
+	grossProfitTblRowInit,
+} from '../../config';
 
 /** 受け取った契約書のデータを、対象のエリアに絞り込んで表示する */
 export const useCumulativeTableTotal = ({
