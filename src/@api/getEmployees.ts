@@ -35,5 +35,6 @@ export const getEmployees = async (
 		app: appId,
 		condition: queryArray.join(' and ') || undefined,
 		orderBy: 'sort asc',
+		withCursor: false, // 10000件を超えない想定でfalseとする
 	}).then(res => res as unknown as IEmployees[]);
 };
