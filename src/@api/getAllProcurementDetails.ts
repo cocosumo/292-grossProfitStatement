@@ -12,4 +12,5 @@ export const getAllProcurementDetails = async (
 	...params,
 	app: appId,
 	orderBy: '作成日時 desc',
+	withCursor: false,
 }).then(res => res as unknown as IProcurements[]);
