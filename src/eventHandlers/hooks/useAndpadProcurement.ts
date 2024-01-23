@@ -14,5 +14,7 @@ export const useAndpadProcurement = ({
 	return useQuery({
 		queryKey: ['andpadProcurement', queryTo],
 		queryFn: async () => getAllProcurementDetails({condition: `${paymentDate} <= "${queryTo}"`}),
+		staleTime: 1000 * 60 * 5,
+		gcTime: 1000 * 60 * 5,
 	});
 };

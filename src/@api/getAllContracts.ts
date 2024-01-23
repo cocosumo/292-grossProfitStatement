@@ -10,6 +10,7 @@ export const getAllContracts = async (
 	...params,
 	app: appId,
 	orderBy: '作成日時 desc',
+	withCursor: false, // 10000件を超えない想定でfalseとする
 }).then(res => res as unknown as IContracts[]);
 
 export type GetAllContractsParams = Parameters<typeof getAllContracts>[0];

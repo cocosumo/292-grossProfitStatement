@@ -1,3 +1,4 @@
+import {ReactQueryDevtools} from '@tanstack/react-query-devtools';
 import {Form, FormProvider, useForm} from 'react-hook-form';
 import {Stack} from '@mui/material';
 import {initialForm} from './form';
@@ -14,6 +15,7 @@ export const FormGrossProfitTable = () => {
 
 	return (
 		<FormProvider {...formReturn}>
+			<ReactQueryDevtools />
 			<Form
 				noValidate
 			>
