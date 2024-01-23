@@ -15,7 +15,7 @@ export const useGrossProfitByPersonTable = ({
 	monthsNum: number;
 	employees: IEmployees[];
 }) => {
-	const formatTblDatas = [] as GrossProfitTableRow[];
+	let formatTblDatas = [] as GrossProfitTableRow[];
 	for (const employee of employees) {
 		const {文字列＿氏名} = employee;
 		const filteredContracts = contractData.filter(({cocoAgs}) => cocoAgs?.includes(文字列＿氏名.value));
@@ -23,9 +23,10 @@ export const useGrossProfitByPersonTable = ({
 		const formattingContracts = contractsFormatGrossProfitTable({
 			filteredContracts,
 			monthsNum,
+			cocoConst: 文字列＿氏名.value,
 		});
 
-		formatTblDatas.concat(Object.values(formattingContracts));
+		formatTblDatas = formatTblDatas.concat(Object.values(formattingContracts));
 	}
 
 	return formatTblDatas;

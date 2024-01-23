@@ -29,7 +29,12 @@ export const CumulativeTable = ({
 	});
 
 	return (
-		<Stack spacing={2}>
+		<Stack
+			spacing={2}
+			px={2}
+			pt={2}
+			pb={4}
+		>
 			<Stack direction={'row'} justifyContent={'space-between'}>
 				<Typography variant='h5'>
 					{cumulativeTableLabel}

@@ -39,6 +39,7 @@ export type KGrossProfitTableRows = keyof GrossProfitTableRow;
 export type KTableLabelList = keyof Omit<GrossProfitTableRow, 'cocoConst' | 'projType' | 'grossprofitAmtTotal' | 'introFeeYume'>;
 
 export const grossProfitTblRowInit: GrossProfitTableRow = {
+	cocoConst: '',
 	projType: '',
 	orderAmtTotalBeforeTax: 0,
 	grossprofitAmtTotal: 0,
