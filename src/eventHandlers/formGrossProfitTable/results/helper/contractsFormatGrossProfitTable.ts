@@ -59,16 +59,16 @@ export const contractsFormatGrossProfitTable = ({
 			const orderAmtBfTax = formattingContracts[projType]?.orderAmtTotalBeforeTax ?? 0;
 			const grossProfitCoco = formattingContracts[projType]?.grossProfitCoco ?? 0;
 
-			const calcOrderAmtBfTax = orderAmtBfTax === 0 ? 1 : orderAmtBfTax;
+			const calcOrderAmtBfTax = orderAmtBfTax || 1;
 			const grossProfitRateCoco = new Big(grossProfitCoco).div(calcOrderAmtBfTax)
 				.times(100)
-				.round(2, Big.roundHalfUp)
+				.round(2)
 				.toNumber();
 			const orderAmtMonthlyAve = new Big(orderAmtBfTax).div(monthsNum)
-				.round(0, Big.roundHalfUp)
+				.round(0)
 				.toNumber();
 			const grossProfitMonthlyAve = new Big(grossProfitCoco).div(monthsNum)
-				.round(0, Big.roundHalfUp)
+				.round(0)
 				.toNumber();
 
 			formattingContracts[projType] = {
