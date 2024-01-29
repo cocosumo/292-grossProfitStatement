@@ -9,6 +9,7 @@ import {type IProjects} from '@api/getAllProjects';
 import {type IContracts} from '@api/getAllContracts';
 import {type IProcurements} from '@api/getAllProcurementDetails';
 import {type TEnvelopeStatus} from '@/configDocsign';
+import {cocosumoAsYumeAgId} from '@/config';
 
 export type SummaryContracts = {
 	/** 店舗名 */
@@ -27,13 +28,13 @@ export type SummaryContracts = {
 	projTypeForTotalization: ProjTypeList;
 
 	/** 夢てつAG名 */
-	yumeAgName: string[];
+	yumeAgIds: string[];
 
-	/** ここすもAG名 */
-	cocoAgs: string[];
+	/** ここすもAG情報 */
+	cocoAgIds: string[];
 
 	/** ここすも工事担当者 */
-	cocoConst: string[];
+	cocoConstIds: string[];
 
 	/** 返金有無 */
 	hasRefund: boolean;
@@ -82,7 +83,7 @@ export const getSummaryContracts = ({
 		inHouseProjTypeName,
 	}) => {
 		const projSystemId = andpadSystemId.value || forceLinkedAndpadSystemId.value || '';
-		const yumeAgNames = getAgents({agents, relation: 'yumeAG'});
+		const yumeAgIds = getAgents({agents, relation: 'yumeAG'});
 
 		const filterContracts = contracts
 			.filter(({
@@ -145,7 +146,8 @@ export const getSummaryContracts = ({
 			purchaseAmount: procurementBeforeTax,
 			paymentAmount: procurementBeforeTax, // 正しくは支払金額だが、粗利表表示が目的のため、発注金額を設定する
 			depositAmount: orderAmountAfterTax, // 正しくは入金金額だが、粗利表表示が目的のため、契約金額を設定する
-			yumeCommFeeRate: (yumeAgNames.length === 1 && yumeAgNames[0] === 'ここすも') ? 0 : Number(commissionRate.value),
+			yumeCommFeeRate: (yumeAgIds.length === 1 && yumeAgIds[0] === cocosumoAsYumeAgId)
+				? 0 : Number(commissionRate.value),
 			tax,
 			hasRefund,
 			subsidyAmt,
@@ -157,9 +159,9 @@ export const getSummaryContracts = ({
 			custName: custNames.value,
 			projType: projTypeName?.value || '',
 			projTypeForTotalization: projTypeForTotalization?.value as ProjTypeList || '',
-			yumeAgName: yumeAgNames,
-			cocoAgs: getAgents({agents, relation: 'cocoAG'}),
-			cocoConst: getAgents({agents, relation: 'cocoConst'}),
+			yumeAgIds,
+			cocoAgIds: getAgents({agents, relation: 'cocoAG'}),
+			cocoConstIds: getAgents({agents, relation: 'cocoConst'}),
 			hasRefund,
 			closingDate: projFinDate.value,
 			orderAmountBeforeTax,

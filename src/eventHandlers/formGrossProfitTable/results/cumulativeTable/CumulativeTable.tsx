@@ -19,7 +19,7 @@ export const CumulativeTable = ({
 	summaryContracts: SummaryContracts[];
 	employeesNum: number;
 }) => {
-	const storeNames = useAreaNameById(area);
+	const storeNames = useAreaNameById();
 	const monthsNum = getMonthsNum(periods);
 	const cumulativeTableLabel = `${year}年度 ${storeNames ? storeNames : ''}	契約集計表`;
 	const cumulativeTableDatas = useCumulativeTableTotal({
@@ -29,7 +29,12 @@ export const CumulativeTable = ({
 	});
 
 	return (
-		<Stack spacing={2}>
+		<Stack
+			spacing={2}
+			px={2}
+			pt={2}
+			pb={4}
+		>
 			<Stack direction={'row'} justifyContent={'space-between'}>
 				<Typography variant='h5'>
 					{cumulativeTableLabel}

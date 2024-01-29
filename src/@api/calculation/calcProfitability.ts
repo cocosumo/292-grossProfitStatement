@@ -34,8 +34,6 @@ export const calcProfitability = (params: {
 	hasRefund: boolean; // 返金有無(0: なし, 1: あり)
 	subsidyAmt?: number; // 補助金額
 }): CostManagement => {
-	// Console.log('CalcProfitability params', params);
-
 	const {
 		orderAmountAfterTax,
 		additionalAmountAfterTax,

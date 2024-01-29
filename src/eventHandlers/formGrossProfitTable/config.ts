@@ -8,6 +8,9 @@ export const projTypeList = ['新築', 'リフォーム', '新築付帯', '太�
 export type ProjTypeList = typeof projTypeList[number] | '';
 
 export type GrossProfitTableRow = {
+	/** 担当者ID */
+	cocoConstId?: string;
+
 	/** 工事種別 */
 	projType: ProjTypeList;
 
@@ -33,9 +36,10 @@ export type GrossProfitTableRow = {
 	grossProfitMonthlyAve: number;
 };
 export type KGrossProfitTableRows = keyof GrossProfitTableRow;
-export type KTableLabelList = keyof Omit<GrossProfitTableRow, 'projType' | 'grossprofitAmtTotal' | 'introFeeYume'>;
+export type KTableLabelList = keyof Omit<GrossProfitTableRow, 'cocoConstId' | 'projType' | 'grossprofitAmtTotal' | 'introFeeYume'>;
 
 export const grossProfitTblRowInit: GrossProfitTableRow = {
+	cocoConstId: '',
 	projType: '',
 	orderAmtTotalBeforeTax: 0,
 	grossprofitAmtTotal: 0,
