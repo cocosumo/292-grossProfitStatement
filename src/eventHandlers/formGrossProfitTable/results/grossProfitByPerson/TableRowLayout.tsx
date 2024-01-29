@@ -51,12 +51,12 @@ export const TableRowLayout = (props: TableRowLayoutProps) => {
 			{isTop && <StyledTableCell align='left' width={'100px'} rowSpan={rowSpanNum}>
 				{name}
 			</StyledTableCell>}
-			{!isHeader && <StyledTableCell align={labelAlign} width={'100px'}>
+			<StyledTableCell align={labelAlign}
+				width={'100px'}
+				colSpan={isHeader ? 2 : undefined}
+			>
 				{label}
-			</StyledTableCell>}
-			{isHeader && <StyledTableCell align={labelAlign} width={'100px'} colSpan={2}>
-				{label}
-			</StyledTableCell>}
+			</StyledTableCell>
 			<StyledTableCell align='right' width={'160px'}>
 				{shinchiku}
 			</StyledTableCell>
