@@ -9,7 +9,6 @@ export const useMembers = ({
 	area: string[];
 }) => useEmployees(
 	useCallback((data: IEmployees[]) => data
-		.sort((a, b) => Number(a.sort.value) - Number(b.sort.value))
 		.filter(({
 			territory_v2,
 			mainStoreId_v2,
