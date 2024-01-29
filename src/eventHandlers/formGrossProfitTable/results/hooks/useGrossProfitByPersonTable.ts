@@ -26,7 +26,7 @@ export const useGrossProfitByPersonTable = ({
 			cocoConstId: uuid.value,
 		}));
 
-		Array.prototype.push.apply(formatTblDatas, formattingContracts);
+		formatTblDatas.push(...formattingContracts);
 	}
 
 	return formatTblDatas;
