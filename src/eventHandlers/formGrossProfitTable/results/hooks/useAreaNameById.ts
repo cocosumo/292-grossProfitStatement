@@ -1,7 +1,16 @@
+import {useTypedWatch} from '@/eventHandlers/hooks/useTypedRHF';
 import {useStores} from '../../../hooks/useStores';
 import {areaLabelList} from '../../config';
 
-export const useAreaNameById = (area: string[]) => {
+export const useAreaNameById = () => {
+	const [
+		area,
+	] = useTypedWatch({
+		name: [
+			'storeIds',
+		],
+	}) as [string[]];
+
 	const {data} = useStores();
 
 	// 選択されているのがエリアの場合(エリアの場合は単一選択)

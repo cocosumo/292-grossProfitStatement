@@ -10,23 +10,16 @@ import {type Areas, areas} from '@/config';
 
 /** 担当者ごとの粗利表を表示する */
 export const GrossProfitByPerson = ({
-	area,
 	periods,
-	year,
 	summaryContracts,
 	members,
 }: {
-	area: string[];
 	periods: string[];
-	year: string;
 	summaryContracts: SummaryContracts[];
 	members: IEmployees[];
 }) => {
-	const storeNames = useAreaNameById(area);
-	const tgtMonths = useMonths({
-		periods,
-		year,
-	});
+	const storeNames = useAreaNameById();
+	const tgtMonths = useMonths();
 	const monthsNum = getMonthsNum(periods);
 	const tableLabel = `${tgtMonths} ${storeNames} 担当者別粗利表 `;
 

@@ -1,12 +1,17 @@
+import {useTypedWatch} from '@/eventHandlers/hooks/useTypedRHF';
 import {periodLabelList} from '../../config';
 
-export const useMonths = ({
-	periods,
-	year,
-}: {
-	periods: string[];
-	year: string;
-}) => {
+export const useMonths = () => {
+	const [
+		periods,
+		year,
+	] = useTypedWatch({
+		name: [
+			'months',
+			'year',
+		],
+	}) as [string[], string];
+
 	// 選択されているのが期間の場合(期間の場合は単一選択)
 	const hasArea = periodLabelList.some(periodLabel => periodLabel === periods[0]);
 	if (hasArea) {

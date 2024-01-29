@@ -75,10 +75,8 @@ export const Results = () => {
 						employeesNum={members ? members.length : 0}
 					/>
 					<GrossProfitByPerson
-						area={area}
 						members={members || [] as IEmployees[]}
 						periods={periods}
-						year={year}
 						summaryContracts={summaryContracts}
 					/>
 				</>}
