@@ -17,13 +17,13 @@ export const useGrossProfitByPersonTable = ({
 }) => {
 	const formatTblDatas = [] as GrossProfitTableRow[];
 	for (const employee of employees) {
-		const {文字列＿氏名} = employee;
-		const filteredContracts = contractData.filter(({cocoAgs}) => cocoAgs?.includes(文字列＿氏名.value));
+		const {uuid} = employee;
+		const filteredContracts = contractData.filter(({cocoAgIds}) => cocoAgIds?.includes(uuid.value));
 
 		const formattingContracts = Object.values(contractsFormatGrossProfitTable({
 			filteredContracts,
 			monthsNum,
-			cocoConst: 文字列＿氏名.value,
+			cocoConstId: uuid.value,
 		}));
 
 		Array.prototype.push.apply(formatTblDatas, formattingContracts);

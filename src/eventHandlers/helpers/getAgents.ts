@@ -1,5 +1,5 @@
 import {type IProjects} from '@api/getAllProjects';
-import {type Tagents} from '@helpers/rolesMap';
+import {type Tagents} from '@/helpers/rolesMap';
 
 export const getAgents = ({
 	agents,
@@ -17,7 +17,7 @@ export const getAgents = ({
 
 			return (agentType.value === relation) && (agentName.value !== '');
 		})
-		.map(({value}) => value.agentName.value);
+		.map(({value}) => value.agentId.value);
 
 	return tgtAgents;
 };

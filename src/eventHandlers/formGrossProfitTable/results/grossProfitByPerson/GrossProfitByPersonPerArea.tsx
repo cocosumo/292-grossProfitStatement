@@ -46,9 +46,12 @@ export const GrossProfitByPersonPerArea = ({
 				/>
 			</StyledTableHead>
 			<TableBody>
-				{members.map(({文字列＿氏名}) => {
+				{members.map(({
+					文字列＿氏名,
+					uuid,
+				}) => {
 					const memberViewDat = viewDatas
-						.filter(({cocoConst}) => cocoConst === 文字列＿氏名.value)
+						.filter(({cocoConstId}) => cocoConstId === uuid.value)
 					|| [] as GrossProfitTableRow[];
 
 					return Object.keys(tableLabelList).map((tableLabel: KTableLabelList, idx) => (

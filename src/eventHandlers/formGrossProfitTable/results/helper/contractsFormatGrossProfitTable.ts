@@ -10,11 +10,11 @@ import Big from 'big.js';
 export const contractsFormatGrossProfitTable = ({
 	filteredContracts,
 	monthsNum,
-	cocoConst = '',
+	cocoConstId = '',
 }: {
 	filteredContracts: SummaryContracts[];
 	monthsNum: number;
-	cocoConst?: string;
+	cocoConstId?: string;
 }) => {
 	const formattingContracts = filteredContracts.reduce<Record<ProjTypeList, GrossProfitTableRow>>((acc, {
 		projTypeForTotalization,
@@ -31,7 +31,7 @@ export const contractsFormatGrossProfitTable = ({
 				grossprofitAmtTotal: Number(grossProfitAmount),
 				grossProfitCoco: Number(grossProfitAmtCoco),
 				introFeeYume: Number(introFeeYume),
-				cocoConst,
+				cocoConstId,
 			};
 		} else {
 			acc[projTypeForTotalization] = {
@@ -40,7 +40,7 @@ export const contractsFormatGrossProfitTable = ({
 				grossprofitAmtTotal: acc[projTypeForTotalization].grossprofitAmtTotal + Number(grossProfitAmount),
 				grossProfitCoco: acc[projTypeForTotalization].grossProfitCoco + Number(grossProfitAmtCoco),
 				introFeeYume: acc[projTypeForTotalization].introFeeYume + Number(introFeeYume),
-				cocoConst,
+				cocoConstId,
 			};
 		}
 
@@ -52,7 +52,7 @@ export const contractsFormatGrossProfitTable = ({
 		if (formattingContracts[projType] === undefined) {
 			formattingContracts[projType] = {
 				...grossProfitTblRowInit,
-				cocoConst,
+				cocoConstId,
 				projType,
 			};
 		} else {
