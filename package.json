@@ -57,7 +57,7 @@
         "@emotion/styled": "^11.11.0",
         "@hookform/resolvers": "^3.3.2",
         "@jest/globals": "^29.7.0",
-        "@kintone/customize-uploader": "^8.0.4",
+        "@kintone/customize-uploader": "^8.0.7",
         "@kintone/rest-api-client": "^5.0.7",
         "@mui/icons-material": "^5.15.6",
         "@mui/material": "^5.15.5",
