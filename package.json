@@ -69,7 +69,7 @@
         "@uidotdev/usehooks": "^2.4.1",
         "big.js": "^6.2.1",
         "date-fns": "^3.3.1",
-        "dompurify": "^3.0.6",
+        "dompurify": "^3.0.9",
         "dotenv": "^16.3.1",
         "immer": "^10.0.3",
         "jest-config": "^29.7.0",
