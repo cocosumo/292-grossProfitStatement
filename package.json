@@ -81,7 +81,7 @@
         "react": "^18.2.0",
         "react-dom": "^18.2.0",
         "react-google-charts": "^4.0.1",
-        "react-hook-form": "^7.49.0",
+        "react-hook-form": "^7.51.0",
         "react-to-print": "^2.15.1",
         "reselect": "^5.1.0",
         "use-fit-text": "^2.4.0",
