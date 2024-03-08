@@ -53,7 +53,7 @@
         "typescript": "^5.3.3"
     },
     "dependencies": {
-        "@emotion/react": "^11.11.3",
+        "@emotion/react": "^11.11.4",
         "@emotion/styled": "^11.11.0",
         "@hookform/resolvers": "^3.3.4",
         "@jest/globals": "^29.7.0",
@@ -61,7 +61,7 @@
         "@kintone/rest-api-client": "^5.0.8",
         "@mui/icons-material": "^5.15.11",
         "@mui/material": "^5.15.11",
-        "@tanstack/react-query": "^5.12.2",
+        "@tanstack/react-query": "^5.25.0",
         "@tanstack/react-query-devtools": "^5.25.0",
         "@types/jquery": "^3.5.29",
         "@types/react": "^18.2.47",
@@ -69,7 +69,7 @@
         "@uidotdev/usehooks": "^2.4.1",
         "big.js": "^6.2.1",
         "date-fns": "^3.3.1",
-        "dompurify": "^3.0.6",
+        "dompurify": "^3.0.9",
         "dotenv": "^16.3.1",
         "immer": "^10.0.3",
         "jest-config": "^29.7.0",
